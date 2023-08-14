@@ -7,7 +7,7 @@ function activate(context) {
     // Register button commands
     context.subscriptions.push(
         vscode.commands.registerCommand('extension.button1Clicked', () => {
-            openWebviewPanel.createOrShow(context.extensionUri);
+            OpenWebviewPanel.createOrShow(context.extensionUri);
         }),
         vscode.commands.registerCommand('extension.button2Clicked', () => {
             vscode.window.showInformationMessage('Button 2 clicked!');
@@ -21,13 +21,13 @@ function activate(context) {
     });
 }
 
-class openWebviewPanel {
+class OpenWebviewPanel {
     constructor(extensionUri) {
         this._extensionUri = extensionUri;
     }
 
     static createOrShow() {
-        if (!openWebviewPanel.currentPanel) {
+        if (!OpenWebviewPanel.currentPanel) {
             const panel = vscode.window.createWebviewPanel(
                 'buttonWebview',
                 'Button Webview',
@@ -50,11 +50,11 @@ class openWebviewPanel {
             });
 
             panel.onDidDispose(() => {
-                openWebviewPanel.currentPanel = undefined;
+                OpenWebviewPanel.currentPanel = undefined;
             })
-            openWebviewPanel.currentPanel = panel;
+            OpenWebviewPanel.currentPanel = panel;
         } else {
-            openWebviewPanel.currentPanel.reveal();
+            OpenWebviewPanel.currentPanel.reveal();
         }
     }
 }
