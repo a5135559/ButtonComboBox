@@ -15,7 +15,7 @@ function activate(context) {
     );
 
     // Create the view container
-    const view = vscode.window.createTreeView('buttonView', {
+    vscode.window.createTreeView('buttonView', {
         treeDataProvider: new ButtonViewDataProvider(),
         showCollapseAll: true
     });
