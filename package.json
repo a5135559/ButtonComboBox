@@ -30,6 +30,10 @@
       ]
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a5135559/ButtonComboBox.git"
+  },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",

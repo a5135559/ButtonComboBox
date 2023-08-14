@@ -71,15 +71,16 @@ function getWebviewContent(){
     </select>
     <button id="submit">Submit</button>
     <script>
+        const vscode = acquireVsCodeApi();
         const select = document.getElementById('options');
         const submitButton = document.getElementById('submit');
 
-        submitButton.addEventListener('click', () => {
+        submitButton.addEventListener('click', event => {
             const selectedOption = select.value;
-            vscode.postMessage({ command: 'optionSelected', option: selectedOption });
-        });
+            vscode.postMessage({ command: 'optionSelected', option: selectedOption })
+        }, true);
     </script>
-`;
+    `;
 }
 
 class ButtonViewDataProvider {
