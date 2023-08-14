@@ -1,7 +1,8 @@
 const vscode = require('vscode');
 
 /**
- * @param {vscode.ExtensionContext} context
+ * Activates the extension.
+ * @param {vscode.ExtensionContext} context - The extension context.
  */
 function activate(context) {
     // Register button commands
@@ -26,6 +27,7 @@ class OpenWebviewPanel {
         this._extensionUri = extensionUri;
     }
 
+    // Creates or shows the webview panel
     static createOrShow() {
         if (!OpenWebviewPanel.currentPanel) {
             const panel = vscode.window.createWebviewPanel(
@@ -37,7 +39,7 @@ class OpenWebviewPanel {
                 }
             );
 
-            // Set the webview's content with a message and a combobox
+            // Set the webview's content with a message, a combobox and a button
             panel.webview.html = getWebviewContent();
 
             // Set up the webview panel message listener
@@ -49,9 +51,10 @@ class OpenWebviewPanel {
                 }
             });
 
+            // Handle panel disposal
             panel.onDidDispose(() => {
                 OpenWebviewPanel.currentPanel = undefined;
-            })
+            });
             OpenWebviewPanel.currentPanel = panel;
         } else {
             OpenWebviewPanel.currentPanel.reveal();
@@ -59,6 +62,7 @@ class OpenWebviewPanel {
     }
 }
 
+// Returns the webview content
 function getWebviewContent() {
     return `<!DOCTYPE html>
     <html lang="en">
@@ -75,9 +79,10 @@ function getWebviewContent() {
         const select = document.getElementById('options');
         const submitButton = document.getElementById('submit');
 
+        // Send selected option to the extension
         submitButton.addEventListener('click', event => {
             const selectedOption = select.value;
-            vscode.postMessage({ command: 'optionSelected', option: selectedOption })
+            vscode.postMessage({ command: 'optionSelected', option: selectedOption });
         }, true);
     </script>
     `;
@@ -87,6 +92,7 @@ class ButtonViewDataProvider {
     getTreeItem(element) {
         return element;
     }
+
     getChildren() {
         // Return the buttons as children of the root element
         return [
