@@ -13,14 +13,16 @@
   "activationEvents": [],
   "contributes": {
     "viewsContainers": {
-      "activitybar": [{
-        "id": "buttonViewContainer",
-        "title": "Button Title",
-        "icon": "resources/square2.svg"
-      }]
+      "activitybar": [
+        {
+          "id": "buttonViewContainer",
+          "title": "Button Title",
+          "icon": "resources/square2.svg"
+        }
+      ]
     },
     "views": {
-      "buttonViewContainer":[
+      "buttonViewContainer": [
         {
           "id": "buttonView",
           "name": "Button View"

@@ -21,13 +21,13 @@ function activate(context) {
     });
 }
 
-class openWebviewPanel{
-    constructor(extensionUri){
+class openWebviewPanel {
+    constructor(extensionUri) {
         this._extensionUri = extensionUri;
     }
 
-    static createOrShow(){
-        if(!openWebviewPanel.currentPanel){
+    static createOrShow() {
+        if (!openWebviewPanel.currentPanel) {
             const panel = vscode.window.createWebviewPanel(
                 'buttonWebview',
                 'Button Webview',
@@ -42,24 +42,24 @@ class openWebviewPanel{
 
             // Set up the webview panel message listener
             panel.webview.onDidReceiveMessage(message => {
-                switch(message.command){
+                switch (message.command) {
                     case 'optionSelected':
                         vscode.window.showInformationMessage(`Selected option: ${message.option}`);
                         return;
                 }
             });
 
-            panel.onDidDispose(() =>{ 
+            panel.onDidDispose(() => {
                 openWebviewPanel.currentPanel = undefined;
             })
             openWebviewPanel.currentPanel = panel;
-        }else{
+        } else {
             openWebviewPanel.currentPanel.reveal();
         }
-    } 
+    }
 }
 
-function getWebviewContent(){
+function getWebviewContent() {
     return `<!DOCTYPE html>
     <html lang="en">
     <h1>Hello from Button Webview!</h1>
