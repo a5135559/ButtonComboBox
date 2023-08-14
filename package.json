@@ -1,16 +1,13 @@
 {
-  "name": "helloworld",
-  "displayName": "HelloWorld",
-  "description": "",
+  "name": "buttoncombobox",
+  "displayName": "ButtonComboBox",
+  "description": "Adds a viewcontainer in the activitybar with 2 buttons, button 1 creates a webviewpage that has a combobox and a submit button which when press will display a message of which option was selected. Button 2 displays an acknowledgement when pressed.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.81.0"
   },
   "categories": [
     "Other"
-  ],
-  "activationEvents": [
-    "onCommand:extension.showButtonView"
   ],
   "main": "./extension.js",
   "contributes": {
